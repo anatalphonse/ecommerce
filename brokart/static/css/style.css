@@ -11,8 +11,8 @@ body{
 .navbar
 {
     display: flex;
+    padding-top: 25px;
     align-items: center;
-    padding: 20px;
 }
 
 nav{

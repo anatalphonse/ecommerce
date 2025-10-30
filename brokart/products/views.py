@@ -12,12 +12,14 @@ def list_products(request):
     page=1
     if request.GET:
         page=request.GET.get('page',1)
-    products=Product.objects.all()
-    product_paginator=Paginator(products,4)
+    products=Product.objects.order_by('priority')
+    product_paginator=Paginator(products,2)
     products=product_paginator.get_page(page)
     context={'products':products}
     return render(request,'products.html',context)
 
 
-def detail_product(request):
-    return render(request,'product_detail.html')
+def detail_product(request,pk):
+    product=Product.objects.get(pk=pk)
+    context={'product':product}
+    return render(request,'product_detail.html',context)
